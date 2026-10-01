@@ -15,17 +15,37 @@
   .hero-image{right:max(var(--space),calc((100% - var(--max))/2));width:min(56%,780px)}
   .hero-shade{background:linear-gradient(0deg,var(--ink) 1%,transparent 28%)}
 }
-/* On small screens the portrait is a separate block before the copy. */
+/* Use the available screen height to keep the portrait and headline together.
+   The introduction remains in normal flow and can continue below the fold. */
 @media(max-width:800px){
-  .hero{height:auto;min-height:0;max-height:none;padding-top:100px}
-  .hero-image{position:relative;inset:auto;z-index:0;width:calc(100% - var(--space)*2);height:clamp(320px,95vw,440px);margin:0 auto;opacity:1;overflow:hidden}
-  .hero-image img{position:absolute;top:0;left:50%;width:auto;max-width:none;height:135%;object-fit:contain;object-position:center top;transform:translateX(-80%)}
-  .hero-image:after{content:'';position:absolute;inset:auto 0 0;height:60px;background:linear-gradient(0deg,var(--ink),transparent);pointer-events:none}
+  .site-header{height:72px}
+  .hero{height:auto;min-height:0;max-height:none;padding-top:76px}
+  .hero-image{position:relative;inset:auto;z-index:0;width:calc(100% - var(--space)*2);height:clamp(140px,34svh,320px);margin:0 auto;opacity:1;overflow:hidden}
+  .hero-image img{position:absolute;top:0;left:50%;width:auto;max-width:none;height:200%;object-fit:contain;object-position:center top;transform:translateX(-79.5%)}
+  .hero-image:after{content:'';position:absolute;inset:auto 0 0;height:48px;background:linear-gradient(0deg,var(--ink),transparent);pointer-events:none}
   .hero-shade{display:none}
-  .hero-inner{display:block;height:auto;padding:32px 0 42px}
+  .hero-inner{display:block;height:auto;padding:18px 0 36px}
   .hero-copy{width:100%;max-width:none}
-  
-  
-  
+  .hero-eyebrow{font-size:clamp(.75rem,3.2vw,.875rem);line-height:1.5;letter-spacing:.07em;max-width:none;margin-bottom:12px}
+  .hero-eyebrow:before{display:none}
+  .hero h1{font-size:clamp(2.4rem,min(12vw,9svh),4.5rem);line-height:1.05}
+}
+/* A short landscape screen has room for two columns, but little height.
+   Keep both columns top-aligned so longer copy cannot push the face down. */
+@media(max-width:1100px) and (max-height:600px) and (orientation:landscape){
+  .site-header{height:64px}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) 36%;gap:clamp(16px,3vw,32px);height:auto;min-height:100svh;max-height:none;padding:64px var(--space) 24px}
+  .hero-image{grid-column:2;grid-row:1;align-self:start;position:relative;inset:auto;z-index:0;width:100%;height:clamp(160px,calc(100svh - 88px),420px);margin:0;opacity:1;overflow:hidden}
+  .hero-image img{position:absolute;top:0;left:50%;width:auto;max-width:none;height:200%;object-fit:contain;object-position:center top;transform:translateX(-79.5%)}
+  .hero-image:after{content:'';position:absolute;inset:auto 0 0;height:48px;background:linear-gradient(0deg,var(--ink),transparent);pointer-events:none}
+  .hero-shade{display:none}
+  .hero-inner{grid-column:1;grid-row:1;align-self:start;display:block;width:100%;height:auto;margin:0;padding:0}
+  .hero-copy{width:100%;max-width:none}
+  .hero-eyebrow{font-size:clamp(.75rem,1.5vw,.8125rem);line-height:1.5;letter-spacing:.07em;max-width:none;margin-bottom:10px}
+  .hero-eyebrow:before{display:none}
+  .hero h1{font-size:clamp(1.875rem,min(6.2vw,12svh),3.8rem);line-height:1.04}
+  .hero-intro{margin-top:20px}
+  .hero .button{margin-top:20px}
+  .nav-wrap nav.open{padding:86px 28px 28px;gap:18px;overflow-y:auto}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
